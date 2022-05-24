@@ -25,7 +25,7 @@ class Reference extends Model {
 
     public function images() {
 
-        return $this->morphMany( Image::class, 'attachable' );
+        return $this->morphMany( Image::class, 'attached' );
     }
 
 }
