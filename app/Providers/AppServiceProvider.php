@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Inertia\Inertia;
+use App\Models\Image;
+use App\Observers\ImageObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Image::observe( ImageObserver::class );
     }
 }

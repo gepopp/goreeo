@@ -18044,6 +18044,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       images: images
     };
+  },
+  computed: {
+    logo: function logo() {
+      return this.$page.props.logo;
+    }
   }
 });
 
@@ -18098,13 +18103,10 @@ var _hoisted_3 = {
   "x-init": "setTimeout(() => fade = true, 2500)",
   "class": "absolute top-0 left-0 w-full h-full flex"
 };
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "absolute top-0 left-0 p-5"
-}, null, -1
-/* HOISTED */
-);
-
+var _hoisted_4 = {
+  "class": "absolute top-0 left-0 max-w-xs"
+};
+var _hoisted_5 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "bg-blue-500 transition-all ease-in-out duration-500 bg-cover bg-left",
@@ -18130,7 +18132,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 4
   /* STYLE */
-  )]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 64
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $options.logo,
+    "class": "w-full h-auto"
+  }, null, 8
+  /* PROPS */
+  , _hoisted_5)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 64
   /* STABLE_FRAGMENT */
   );
 }

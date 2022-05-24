@@ -18,7 +18,9 @@
             class="absolute top-0 left-0 w-full h-full flex">
             <div class="bg-blue-500 transition-all ease-in-out duration-500 bg-cover bg-left"
                  x-bind:class="fade == true ? 'w-1/3' : 'w-0'"
-                 v-bind:style="{ backgroundImage: 'url(' + images[0] +')' }"></div>
+                 v-bind:style="{ backgroundImage: 'url(' + images[0] +')' }">
+
+            </div>
             <div class="bg-red-500 transition-all delay-500 ease-in-out duration-500 bg-cover bg-left"
                  x-bind:class="fade == true ? 'w-1/3' : 'w-0'"
                  v-bind:style="{ backgroundImage: 'url(' + images[1] +')' }"
@@ -29,8 +31,8 @@
             ></div>
         </div>
 
-        <div class="absolute top-0 left-0 p-5">
-
+        <div class="absolute top-0 left-0 max-w-xs">
+            <img :src="logo" class="w-full h-auto"/>
         </div>
 
     </div>
@@ -45,13 +47,16 @@ import { usePage } from '@inertiajs/inertia-vue3'
 
 
 export default {
-
-
     name: "Layout",
     setup() {
         const images = computed(() => usePage().props.value.images)
         return { images }
     },
+    computed:{
+        logo(){
+            return this.$page.props.logo;
+        }
+    }
 }
 </script>
 
