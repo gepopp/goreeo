@@ -10,6 +10,9 @@ module.exports = {
             fontFamily: {
                 'sans': ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
+            colors:{
+                logo: '#1d526d'
+            }
         }
     },
     plugins: [],

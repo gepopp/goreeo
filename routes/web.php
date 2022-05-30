@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
    return \Inertia\Inertia::render('Home');
 });
+
+
+Route::get('references/slides', [\App\Http\Controllers\ReferenceController::class, 'slides'])->name('reference.slides');

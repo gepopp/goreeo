@@ -14,6 +14,8 @@
     0% { transform: translate3d(0, -100%, 0); }
     100% { transform: translate3d(0, 0, 0); }
 }
+
+
 .animated-title {
     color: #ffffff;
     height: 90vmin;
@@ -31,14 +33,12 @@
 }
 .animated-title > div div {
     font-size: 6vmin;
-    padding: 2vmin 0;
     position: absolute;
 }
 .animated-title > div div span {
     display: block;
 }
 .animated-title > div.text-top {
-    border-bottom: 1vmin solid #ffffff;
     top: 0;
 }
 .animated-title > div.text-top div {
@@ -60,4 +60,13 @@
     animation-fill-mode: forwards;
     top: 0;
     transform: translate(0, -100%);
+}
+
+.carousel__prev{
+    margin-left: 50px;
+    background-color: #1d526d !important;
+}
+.carousel__next{
+    margin-right: 50px;
+    background-color: #1d526d !important;
 }

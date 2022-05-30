@@ -38,11 +38,6 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'logo' => asset('images/logo.svg'),
-            'images' => [
-                asset('images/Beacon-Website-Goreeo.jpg'),
-                asset('images/IMMMA.jpg'),
-                asset('images/ladeseite-goreeo_Website.jpg')
-            ]
         ]);
     }
 

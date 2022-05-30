@@ -53,6 +53,13 @@ class References extends Resource
                 'logo'  => 'logo'
             ])
             ->default('logo'),
+            Select::make('Bildposition im Slider', 'bg_position')
+                  ->options([
+                      'left' => 'left',
+                      'center'  => 'center',
+                      'right'  => 'right'
+                  ])
+                ->default('left'),
             Text::make('Title'),
             Text::make('Subtitle'),
 
