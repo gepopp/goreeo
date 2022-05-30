@@ -30,7 +30,7 @@
                     <slide v-for="slide in slides" :key="slide">
                         <div class="h-screen w-full">
                             <Transition name="slide">
-                                <div class="flex items-end p-10 h-screen bg-blue-500 bg-cover" :class="bgPos(slide)" :style="{ backgroundImage: 'url(' + slide.image +')' }" v-show="fade">
+                                <div class="flex items-end p-10 h-screen bg-cover" :class="bgPos(slide)" :style="{ backgroundImage: 'url(' + slide.image +')' }" v-show="fade">
                                     <Transition name="fade">
                                         <div v-show="fade" class="text-left mb-24" :class="slide.color == 'logo' ? 'text-logo' : 'text-white'">
                                             <h1 class="text-5xl font-bold pb-5 mb-5 border-b-4"
