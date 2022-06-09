@@ -23,6 +23,21 @@
                     weiter
                 </div>
             </div>
+            <div class="block md:hidden z-50" v-if="!intro">
+                <div v-for="slide in slides" :key="slide" class="relative">
+                    <Link :href="route('reference.show', {reference: slide.slug })">
+                        <div class="w-full bg-cover bg-center"
+                             style="transition: height 1s;"
+                             :class="activeSlug == slide.slug ? 'h-screen' : 'h-48'"
+                             :style="{ backgroundImage: 'url(' + slide.image + ')' }"/>
+
+                        <div class="p-5 text-logo bg-white">
+                            <h2 class="text-2xl font-bold" v-text="slide.title"></h2>
+                            <p class="text-lg lg:text-xl font-semibold">{{ slide.subtitle }}</p>
+                        </div>
+                    </Link>
+                </div>
+            </div>
 
             <div class="absolute top-0 left-0 w-full h-full hidden md:block" v-if="!intro">
                 <carousel :items-to-show="toShow" ref="intro" :wrap-around="true">
@@ -36,7 +51,7 @@
                                     <Transition name="fade">
                                         <div v-show="fade" class="text-left mb-24" :class="slide.color == 'logo' ? 'text-logo' : 'text-white'">
                                             <Link :href="route('reference.show', {reference: slide.slug })">
-                                                <h1 class="text-2xl lg:text-5xl font-bold pb-5 mb-5 border-b-4 break-all"
+                                                <h1 class="text-2xl lg:text-3xl xl:text-5xl font-bold pb-5 mb-5 border-b-4 break-all"
                                                     :class="slide.color == 'logo' ? 'border-logo' : 'border-white'"
                                                     v-show="fade">{{ slide.title }}</h1>
                                                 <p class="text-lg lg:text-xl font-semibold h-48">{{ slide.subtitle }}</p>
@@ -53,18 +68,10 @@
                     </template>
 
                 </carousel>
+
             </div>
 
-            <div class="block md:hidden z-50" v-if="!intro">
-                <div v-for="slide in slides" :key="slide">
-                    <Link :href="route('reference.show', {reference: slide.slug })">
-                        <div class="w-full bg-cover bg-center transition-transform"
-                             style="transition: height 1s;"
-                             :class="activeSlug == slide.slug ? 'h-screen' : 'h-48'"
-                             :style="{ backgroundImage: 'url(' + slide.image + ')' }"></div>
-                    </Link>
-                </div>
-            </div>
+
 
 
             <div class="absolute top-0 left-0 w-1/2 max-w-xs">
@@ -74,6 +81,8 @@
             </div>
         </div>
     </div>
+
+
 
     <slot/>
 
