@@ -73,3 +73,6 @@
 .carousel__slide--active > .carousel__item {
     transform: scale(1.1);
 }
+#nprogress .bar {
+    height: 5px !important;
+}

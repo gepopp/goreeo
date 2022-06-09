@@ -14,6 +14,8 @@ class ReferenceController extends Controller {
 
     public function show( Reference $reference ) {
 
+        sleep(2);
+
         return inertia( 'ReferenceShow', [
             'reference' => $reference,
         ] );
@@ -24,6 +26,8 @@ class ReferenceController extends Controller {
 
 
     public function slides() {
+
+
 
         $references = Reference::orderBy( 'slide_order', 'DESC' )->with( 'images' )->get();
 
