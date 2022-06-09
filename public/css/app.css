@@ -385,8 +385,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-5{
   margin-bottom: 1.25rem;
 }
+.block{
+  display: block;
+}
 .flex{
   display: flex;
+}
+.hidden{
+  display: none;
 }
 .h-full{
   height: 100%;
@@ -405,6 +411,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-full{
   width: 100%;
+}
+.w-1\/2{
+  width: 50%;
 }
 .w-screen{
   width: 100vw;
@@ -459,14 +468,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-cover{
   background-size: cover;
 }
+.bg-center{
+  background-position: center;
+}
 .bg-left{
   background-position: left;
 }
 .bg-right{
   background-position: right;
-}
-.bg-center{
-  background-position: center;
 }
 .p-10{
   padding: 2.5rem;
@@ -515,6 +524,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+.transition-transform{
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 .transition{
   transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -524,6 +538,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .duration-500{
   transition-duration: 500ms;
+}
+.duration-1000{
+  transition-duration: 1000ms;
 }
 .ease-in-out{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -642,6 +659,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 #nprogress .bar {
   height: 5px !important;
+}
+
+.carousel__slide {
+  transition: width 2s;
+  transition-delay: 500ms;
+}
+
+@media (min-width: 768px){
+  .md\:block{
+    display: block;
+  }
+  .md\:hidden{
+    display: none;
+  }
 }
 
 @media (min-width: 1024px){

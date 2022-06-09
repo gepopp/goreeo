@@ -24,13 +24,13 @@
                 </div>
             </div>
 
-            <div class="absolute top-0 left-0 w-full h-full" v-if="!intro">
+            <div class="absolute top-0 left-0 w-full h-full hidden md:block" v-if="!intro">
                 <carousel :items-to-show="toShow" ref="intro" :wrap-around="true">
                     <slide v-for="slide in slides" :key="slide">
                         <div class="h-screen w-full">
                             <Transition name="slide">
                                 <div class="flex items-end p-10 h-screen bg-cover transform transition-all ease-in-out duration-500"
-                                     :class="[ bgPos(slide), currentPage(slide.slug) ]"
+                                     :class="[ bgPos(slide) ]"
                                      :style="{ backgroundImage: 'url(' + slide.image +')' }"
                                      v-show="fade">
                                     <Transition name="fade">
@@ -49,14 +49,25 @@
                     </slide>
 
                     <template #addons>
-                        <navigation v-if="slides.length > 1" />
+                        <navigation v-if="slides.length > 1"/>
                     </template>
 
                 </carousel>
             </div>
 
+            <div class="block md:hidden z-50" v-if="!intro">
+                <div v-for="slide in slides" :key="slide">
+                    <Link :href="route('reference.show', {reference: slide.slug })">
+                        <div class="w-full bg-cover bg-center transition-transform"
+                             style="transition: height 1s;"
+                             :class="activeSlug == slide.slug ? 'h-screen' : 'h-48'"
+                             :style="{ backgroundImage: 'url(' + slide.image + ')' }"></div>
+                    </Link>
+                </div>
+            </div>
 
-            <div class="absolute top-0 left-0 max-w-xs">
+
+            <div class="absolute top-0 left-0 w-1/2 max-w-xs">
                 <Link :href="route('home')">
                     <img :src="logo" class="w-full h-auto"/>
                 </Link>
@@ -72,9 +83,8 @@
 import axios from 'axios'
 import 'vue3-carousel/dist/carousel.css';
 import {Carousel, Navigation, Pagination, Slide} from 'vue3-carousel';
-import { Link } from '@inertiajs/inertia-vue3';
-import { Inertia } from '@inertiajs/inertia';
-import { ref } from "vue";
+import {Link} from '@inertiajs/inertia-vue3';
+import {Inertia} from '@inertiajs/inertia';
 
 export default {
     name: "Layout",
@@ -97,14 +107,14 @@ export default {
             toShow: 3
         }
     },
-    watch:{
-        activeSlug(value){
+    watch: {
+        activeSlug(value) {
 
 
-            if(value == ''){
+            if (value == '') {
                 this.toShow = 3;
                 this.slides = this.all_slides;
-            }else{
+            } else {
                 this.toShow = 1;
                 this.slides = this.all_slides.filter((slide) => slide.slug == this.activeSlug);
             }
@@ -119,7 +129,7 @@ export default {
             });
 
         Inertia.on('success', (event) => {
-            var url =  event.detail.page.url;
+            var url = event.detail.page.url;
             this.activeSlug = url.split('/').pop();
         });
     },
@@ -143,13 +153,13 @@ export default {
             }
             return 'bg-center';
         },
-        currentPage(slug){
-            if(this.activeSlug == ''){
+        currentPage(slug) {
+            if (this.activeSlug == '') {
                 return '';
             }
-            if(this.activeSlug == slug){
-                return 'absolute w-screen h-screen top-0 left-0 z-50';
-            }else{
+            if (this.activeSlug == slug) {
+                return 'w-screen h-screen top-0 left-0 z-50 transition-all duration-1000';
+            } else {
                 return '';
             }
 

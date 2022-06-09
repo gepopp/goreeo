@@ -76,3 +76,7 @@
 #nprogress .bar {
     height: 5px !important;
 }
+.carousel__slide{
+    transition: width 2s;
+    transition-delay: 500ms;
+}

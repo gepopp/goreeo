@@ -14,8 +14,6 @@ class ReferenceController extends Controller {
 
     public function show( Reference $reference ) {
 
-        sleep(2);
-
         return inertia( 'ReferenceShow', [
             'reference' => $reference,
         ] );
