@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
    return \Inertia\Inertia::render('Home');
-});
+})->name('home');
+
+
+
 
 
 Route::get('references/slides', [\App\Http\Controllers\ReferenceController::class, 'slides'])->name('reference.slides');
+Route::get('reference/{reference}', [\App\Http\Controllers\ReferenceController::class, 'show'])->name('reference.show');

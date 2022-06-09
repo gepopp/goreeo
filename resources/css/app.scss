@@ -70,3 +70,6 @@
     margin-right: 50px;
     background-color: #1d526d !important;
 }
+.carousel__slide--active > .carousel__item {
+    transform: scale(1.1);
+}

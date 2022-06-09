@@ -64,6 +64,7 @@ class References extends Resource
             Text::make('Subtitle'),
 
 
+            MorphMany::make('Inhaltsblöcke', 'contentBlocks', 'App\Nova\ContentBlock'),
             MorphMany::make('Images', 'images', 'App\Nova\Image')
         ];
     }

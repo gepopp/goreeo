@@ -12,6 +12,17 @@ class ReferenceController extends Controller {
 
 
 
+    public function show( Reference $reference ) {
+
+        return inertia( 'ReferenceShow', [
+            'reference' => $reference,
+        ] );
+    }
+
+
+
+
+
     public function slides() {
 
         $references = Reference::orderBy( 'slide_order', 'DESC' )->with( 'images' )->get();
@@ -22,11 +33,12 @@ class ReferenceController extends Controller {
 
 
             $data[] = [
+                'slug'     => $reference->slug,
                 'title'    => $reference->title,
                 'subtitle' => $reference->subtitle,
                 'image'    => $reference->images[0]->getSizeUrl( 'large' ),
                 'color'    => $reference->color,
-                'pos'      => $reference->bg_position
+                'pos'      => $reference->bg_position,
             ];
 
 
