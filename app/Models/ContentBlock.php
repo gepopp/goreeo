@@ -23,6 +23,12 @@ class ContentBlock extends Model {
 
 
 
+    protected $with = [ 'images' ];
+
+
+
+
+
     public function contentable() {
 
         return $this->morphTo();

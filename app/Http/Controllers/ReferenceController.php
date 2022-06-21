@@ -26,8 +26,7 @@ class ReferenceController extends Controller {
     public function slides() {
 
 
-
-        $references = Reference::orderBy( 'slide_order', 'DESC' )->with( 'images' )->get();
+        $references = Reference::orderBy( 'slide_order', 'DESC' )->whereHas('images')->with( 'images' )->get();
 
         $data = [];
 

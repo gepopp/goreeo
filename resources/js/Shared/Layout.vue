@@ -1,24 +1,22 @@
 <template>
     <div>
         <div class="w-full min-h-screen bg-gray-800 relative">
-            <div class="">
-                <div class="animated-title">
-                    <div class="text-top">
-                        <div>
-                            <span>content </span>
-                            <span>marketing &</span>
-                        </div>
+            <div class="animated-title" v-show="intro">
+                <div class="text-top">
+                    <div>
+                        <span>content </span>
+                        <span>marketing &</span>
                     </div>
-                    <div class="text-bottom">
-                        <div>social media management</div>
-                    </div>
+                </div>
+                <div class="text-bottom">
+                    <div>social media management</div>
                 </div>
             </div>
 
             <div class="absolute bottom-0 left-0 w-full flex justify-center py-5">
-                <div class="mx-auto text-white text-xl animate-pulse cursor-pointer z-50"
+                <div class="mx-auto mb-20 text-white text-xl animate-pulse cursor-pointer z-50"
                      @click="introOut"
-                     v-show="!fade"
+                     v-show="!fade && intro"
                 >
                     weiter
                 </div>
@@ -62,17 +60,11 @@
                             </Transition>
                         </div>
                     </slide>
-
                     <template #addons>
                         <navigation v-if="slides.length > 1"/>
                     </template>
-
                 </carousel>
-
             </div>
-
-
-
 
             <div class="absolute top-0 left-0 w-1/2 max-w-xs">
                 <Link :href="route('home')">
@@ -81,9 +73,6 @@
             </div>
         </div>
     </div>
-
-
-
     <slot/>
 
 </template>
@@ -131,10 +120,19 @@ export default {
             this.$refs.intro.slideTo(0);
         }
     },
+    beforeMount() {
+        if(Inertia.page.url !== '/'){
+            this.intro = false;
+        }
+    },
     mounted() {
+
         axios.get(route('reference.slides'))
             .then((data) => {
                 this.all_slides = this.slides = data.data;
+                if(Inertia.page.url !== '/'){
+                    this.activeSlug = Inertia.page.url.split('/').pop();
+                }
             });
 
         Inertia.on('success', (event) => {

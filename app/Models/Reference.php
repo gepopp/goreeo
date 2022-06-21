@@ -25,6 +25,12 @@ class Reference extends Model {
 
 
 
+    protected $with = [ 'contentBlocks' ];
+
+
+
+
+
     public function contentBlocks() {
 
         return $this->morphMany( ContentBlock::class, 'contentable' );
