@@ -20230,6 +20230,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      setup: true,
       loaded: [],
       intro: true,
       all_slides: [],
@@ -20257,19 +20258,21 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.intro.slideTo(0);
     }
   },
-  beforeMount: function beforeMount() {
-    if (_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.page.url !== '/') {
-      this.intro = false;
-    }
-  },
   mounted: function mounted() {
     var _this2 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default().get(route('reference.slides')).then(function (data) {
       _this2.all_slides = _this2.slides = data.data;
+      _this2.setup = false;
 
-      if (_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.page.url !== '/') {
-        _this2.activeSlug = _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.page.url.split('/').pop();
+      if (_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.page.url != '/') {
+        _this2.intro = false;
+
+        _this2.introOut();
+
+        setTimeout(function () {
+          _this2.activeSlug = _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.page.url.split('/').pop();
+        }, 500);
       }
     });
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.on('success', function (event) {
@@ -20398,10 +20401,27 @@ var _hoisted_1 = {
   "class": "w-full min-h-screen bg-gray-800 relative"
 };
 var _hoisted_2 = {
-  "class": "animated-title"
+  key: 0,
+  "class": "flex justify-center items-center w-full h-full min-h-screen"
 };
 
 var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "lds-ripple"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_4 = [_hoisted_3];
+var _hoisted_5 = {
+  key: 1
+};
+var _hoisted_6 = {
+  "class": "animated-title"
+};
+
+var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "text-top"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "content "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "marketing &")])], -1
@@ -20409,7 +20429,7 @@ var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "text-bottom"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "social media management")], -1
@@ -20417,35 +20437,35 @@ var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_5 = [_hoisted_3, _hoisted_4];
-var _hoisted_6 = {
+var _hoisted_9 = [_hoisted_7, _hoisted_8];
+var _hoisted_10 = {
   "class": "absolute bottom-0 left-0 w-full flex justify-center py-5"
 };
-var _hoisted_7 = {
+var _hoisted_11 = {
   key: 0,
   "class": "block md:hidden z-50"
 };
-var _hoisted_8 = {
+var _hoisted_12 = {
   "class": "p-5 text-logo bg-white"
 };
-var _hoisted_9 = ["textContent"];
-var _hoisted_10 = {
+var _hoisted_13 = ["textContent"];
+var _hoisted_14 = {
   "class": "text-lg lg:text-xl font-semibold"
 };
-var _hoisted_11 = {
+var _hoisted_15 = {
   key: 1,
   "class": "absolute top-0 left-0 w-full h-full hidden md:block"
 };
-var _hoisted_12 = {
+var _hoisted_16 = {
   "class": "h-screen w-full"
 };
-var _hoisted_13 = {
+var _hoisted_17 = {
   "class": "text-lg lg:text-xl font-semibold h-48"
 };
-var _hoisted_14 = {
+var _hoisted_18 = {
   "class": "absolute top-0 left-0 w-1/2 max-w-xs"
 };
-var _hoisted_15 = ["src"];
+var _hoisted_19 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
@@ -20455,16 +20475,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_carousel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("carousel");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, _hoisted_5, 512
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [$data.setup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, _hoisted_4)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, _hoisted_9, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.intro]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.intro]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "mx-auto mb-20 text-white text-xl animate-pulse cursor-pointer z-50",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.introOut && $options.introOut.apply($options, arguments);
     })
   }, " weiter ", 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.fade && $data.intro]])]), !$data.intro ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.slides, function (slide) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.fade && $data.intro]])]), !$data.intro ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.slides, function (slide) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: slide,
       "class": "relative"
@@ -20483,12 +20503,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }])
         }, null, 6
         /* CLASS, STYLE */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
           "class": "text-2xl font-bold",
           textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.title)
         }, null, 8
         /* PROPS */
-        , _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.subtitle), 1
+        , _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.subtitle), 1
         /* TEXT */
         )])];
       }),
@@ -20500,7 +20520,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["href"])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.intro ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_carousel, {
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.intro ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_carousel, {
     "items-to-show": $data.toShow,
     ref: "intro",
     "wrap-around": true
@@ -20516,7 +20536,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: slide
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
               name: "slide"
             }, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -20541,7 +20561,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-2xl lg:text-3xl xl:text-5xl font-bold pb-5 mb-5 border-b-4 break-all", slide.color == 'logo' ? 'border-logo' : 'border-white'])
                         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.title), 3
                         /* TEXT, CLASS */
-                        ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.fade]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.subtitle), 1
+                        ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.fade]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.subtitle), 1
                         /* TEXT */
                         )];
                       }),
@@ -20585,7 +20605,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["items-to-show"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  , ["items-to-show"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: _ctx.route('home')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -20594,7 +20614,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "w-full h-auto"
       }, null, 8
       /* PROPS */
-      , _hoisted_15)];
+      , _hoisted_19)];
     }),
     _: 1
     /* STABLE */
@@ -20785,7 +20805,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* we will explain what these classes do next! */\n.slide-enter-active[data-v-6bf30086],\n.slide-leave-active[data-v-6bf30086] {\n    width: 100%;\n    transition: width 1s ease;\n}\n.slide-enter-from[data-v-6bf30086],\n.slide-leave-to[data-v-6bf30086] {\n    width: 0 !important;\n}\n.fade-enter-active[data-v-6bf30086],\n.fade-leave-active[data-v-6bf30086] {\n    transition: opacity 0.5s ease;\n    transition-delay: 1.25s;\n}\n.fade-enter-from[data-v-6bf30086],\n.fade-leave-to[data-v-6bf30086] {\n    opacity: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* we will explain what these classes do next! */\n.slide-enter-active[data-v-6bf30086],\n.slide-leave-active[data-v-6bf30086] {\n    width: 100%;\n    transition: width 1s ease;\n}\n.slide-enter-from[data-v-6bf30086],\n.slide-leave-to[data-v-6bf30086] {\n    width: 0 !important;\n}\n.fade-enter-active[data-v-6bf30086],\n.fade-leave-active[data-v-6bf30086] {\n    transition: opacity 0.5s ease;\n    transition-delay: 1.25s;\n}\n.fade-enter-from[data-v-6bf30086],\n.fade-leave-to[data-v-6bf30086] {\n    opacity: 0;\n}\n.lds-ripple[data-v-6bf30086] {\n    display: inline-block;\n    position: relative;\n    width: 80px;\n    height: 80px;\n}\n.lds-ripple div[data-v-6bf30086] {\n    position: absolute;\n    border: 4px solid #fff;\n    opacity: 1;\n    border-radius: 50%;\n    -webkit-animation: lds-ripple-6bf30086 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n            animation: lds-ripple-6bf30086 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;\n}\n.lds-ripple div[data-v-6bf30086]:nth-child(2) {\n    -webkit-animation-delay: -0.5s;\n            animation-delay: -0.5s;\n}\n@-webkit-keyframes lds-ripple-6bf30086 {\n0% {\n        top: 36px;\n        left: 36px;\n        width: 0;\n        height: 0;\n        opacity: 0;\n}\n4.9% {\n        top: 36px;\n        left: 36px;\n        width: 0;\n        height: 0;\n        opacity: 0;\n}\n5% {\n        top: 36px;\n        left: 36px;\n        width: 0;\n        height: 0;\n        opacity: 1;\n}\n100% {\n        top: 0px;\n        left: 0px;\n        width: 72px;\n        height: 72px;\n        opacity: 0;\n}\n}\n@keyframes lds-ripple-6bf30086 {\n0% {\n        top: 36px;\n        left: 36px;\n        width: 0;\n        height: 0;\n        opacity: 0;\n}\n4.9% {\n        top: 36px;\n        left: 36px;\n        width: 0;\n        height: 0;\n        opacity: 0;\n}\n5% {\n        top: 36px;\n        left: 36px;\n        width: 0;\n        height: 0;\n        opacity: 1;\n}\n100% {\n        top: 0px;\n        left: 0px;\n        width: 72px;\n        height: 72px;\n        opacity: 0;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

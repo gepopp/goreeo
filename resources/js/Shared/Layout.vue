@@ -1,71 +1,80 @@
 <template>
     <div>
         <div class="w-full min-h-screen bg-gray-800 relative">
-            <div class="animated-title" v-show="intro">
-                <div class="text-top">
-                    <div>
-                        <span>content </span>
-                        <span>marketing &</span>
+
+            <div class="flex justify-center items-center w-full h-full min-h-screen" v-if="setup">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <div v-else>
+                <div class="animated-title" v-show="intro">
+                    <div class="text-top">
+                        <div>
+                            <span>content </span>
+                            <span>marketing &</span>
+                        </div>
+                    </div>
+                    <div class="text-bottom">
+                        <div>social media management</div>
                     </div>
                 </div>
-                <div class="text-bottom">
-                    <div>social media management</div>
+
+                <div class="absolute bottom-0 left-0 w-full flex justify-center py-5">
+                    <div class="mx-auto mb-20 text-white text-xl animate-pulse cursor-pointer z-50"
+                         @click="introOut"
+                         v-show="!fade && intro"
+                    >
+                        weiter
+                    </div>
+                </div>
+                <div class="block md:hidden z-50" v-if="!intro">
+                    <div v-for="slide in slides" :key="slide" class="relative">
+                        <Link :href="route('reference.show', {reference: slide.slug })">
+                            <div class="w-full bg-cover bg-center"
+                                 style="transition: height 1s;"
+                                 :class="activeSlug == slide.slug ? 'h-screen' : 'h-48'"
+                                 :style="{ backgroundImage: 'url(' + slide.image + ')' }"/>
+
+                            <div class="p-5 text-logo bg-white">
+                                <h2 class="text-2xl font-bold" v-text="slide.title"></h2>
+                                <p class="text-lg lg:text-xl font-semibold">{{ slide.subtitle }}</p>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+
+                <div class="absolute top-0 left-0 w-full h-full hidden md:block" v-if="!intro">
+                    <carousel :items-to-show="toShow" ref="intro" :wrap-around="true">
+                        <slide v-for="slide in slides" :key="slide">
+                            <div class="h-screen w-full">
+                                <Transition name="slide">
+                                    <div class="flex items-end p-10 h-screen bg-cover transform transition-all ease-in-out duration-500"
+                                         :class="[ bgPos(slide) ]"
+                                         :style="{ backgroundImage: 'url(' + slide.image +')' }"
+                                         v-show="fade">
+                                        <Transition name="fade">
+                                            <div v-show="fade" class="text-left mb-24" :class="slide.color == 'logo' ? 'text-logo' : 'text-white'">
+                                                <Link :href="route('reference.show', {reference: slide.slug })">
+                                                    <h1 class="text-2xl lg:text-3xl xl:text-5xl font-bold pb-5 mb-5 border-b-4 break-all"
+                                                        :class="slide.color == 'logo' ? 'border-logo' : 'border-white'"
+                                                        v-show="fade">{{ slide.title }}</h1>
+                                                    <p class="text-lg lg:text-xl font-semibold h-48">{{ slide.subtitle }}</p>
+                                                </Link>
+                                            </div>
+                                        </Transition>
+                                    </div>
+                                </Transition>
+                            </div>
+                        </slide>
+                        <template #addons>
+                            <navigation v-if="slides.length > 1"/>
+                        </template>
+                    </carousel>
                 </div>
             </div>
-
-            <div class="absolute bottom-0 left-0 w-full flex justify-center py-5">
-                <div class="mx-auto mb-20 text-white text-xl animate-pulse cursor-pointer z-50"
-                     @click="introOut"
-                     v-show="!fade && intro"
-                >
-                    weiter
-                </div>
-            </div>
-            <div class="block md:hidden z-50" v-if="!intro">
-                <div v-for="slide in slides" :key="slide" class="relative">
-                    <Link :href="route('reference.show', {reference: slide.slug })">
-                        <div class="w-full bg-cover bg-center"
-                             style="transition: height 1s;"
-                             :class="activeSlug == slide.slug ? 'h-screen' : 'h-48'"
-                             :style="{ backgroundImage: 'url(' + slide.image + ')' }"/>
-
-                        <div class="p-5 text-logo bg-white">
-                            <h2 class="text-2xl font-bold" v-text="slide.title"></h2>
-                            <p class="text-lg lg:text-xl font-semibold">{{ slide.subtitle }}</p>
-                        </div>
-                    </Link>
-                </div>
-            </div>
-
-            <div class="absolute top-0 left-0 w-full h-full hidden md:block" v-if="!intro">
-                <carousel :items-to-show="toShow" ref="intro" :wrap-around="true">
-                    <slide v-for="slide in slides" :key="slide">
-                        <div class="h-screen w-full">
-                            <Transition name="slide">
-                                <div class="flex items-end p-10 h-screen bg-cover transform transition-all ease-in-out duration-500"
-                                     :class="[ bgPos(slide) ]"
-                                     :style="{ backgroundImage: 'url(' + slide.image +')' }"
-                                     v-show="fade">
-                                    <Transition name="fade">
-                                        <div v-show="fade" class="text-left mb-24" :class="slide.color == 'logo' ? 'text-logo' : 'text-white'">
-                                            <Link :href="route('reference.show', {reference: slide.slug })">
-                                                <h1 class="text-2xl lg:text-3xl xl:text-5xl font-bold pb-5 mb-5 border-b-4 break-all"
-                                                    :class="slide.color == 'logo' ? 'border-logo' : 'border-white'"
-                                                    v-show="fade">{{ slide.title }}</h1>
-                                                <p class="text-lg lg:text-xl font-semibold h-48">{{ slide.subtitle }}</p>
-                                            </Link>
-                                        </div>
-                                    </Transition>
-                                </div>
-                            </Transition>
-                        </div>
-                    </slide>
-                    <template #addons>
-                        <navigation v-if="slides.length > 1"/>
-                    </template>
-                </carousel>
-            </div>
-
             <div class="absolute top-0 left-0 w-1/2 max-w-xs">
                 <Link :href="route('home')">
                     <img :src="logo" class="w-full h-auto"/>
@@ -96,6 +105,7 @@ export default {
     },
     data() {
         return {
+            setup: true,
             loaded: [],
             intro: true,
             all_slides: [],
@@ -120,18 +130,19 @@ export default {
             this.$refs.intro.slideTo(0);
         }
     },
-    beforeMount() {
-        if(Inertia.page.url !== '/'){
-            this.intro = false;
-        }
-    },
     mounted() {
+
 
         axios.get(route('reference.slides'))
             .then((data) => {
                 this.all_slides = this.slides = data.data;
-                if(Inertia.page.url !== '/'){
-                    this.activeSlug = Inertia.page.url.split('/').pop();
+                this.setup = false;
+                if(Inertia.page.url != '/'){
+                    this.intro = false;
+                    this.introOut();
+                    setTimeout(() => {
+                        this.activeSlug = Inertia.page.url.split('/').pop();
+                    }, 500);
                 }
             });
 
@@ -197,5 +208,56 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
+}
+
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
 }
 </style>
