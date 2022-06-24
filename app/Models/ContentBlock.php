@@ -29,6 +29,12 @@ class ContentBlock extends Model {
 
 
 
+    protected $casts = [ 'meta' => 'array' ];
+
+
+
+
+
     public function contentable() {
 
         return $this->morphTo();
