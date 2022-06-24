@@ -80,7 +80,6 @@ class ContentBlock extends Resource {
 
             Select::make( 'Layout' )
                   ->options( [
-                      'default' => 'default',
                       'image'   => 'Nur Bild',
                       'images'  => 'Zwei Bilder',
                       'meta'    => 'Metadatenblock',
