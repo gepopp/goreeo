@@ -80,11 +80,11 @@ class ContentBlock extends Resource {
 
             Select::make( 'Layout' )
                   ->options( [
-                      'image'   => 'Nur Bild',
-                      'images'  => 'Zwei Bilder',
-                      'meta'    => 'Metadatenblock',
-                      'text'    => 'Nur Text',
-                      'row'     => 'Text/Bild',
+                      'image'  => 'Nur Bild',
+                      'images' => 'Zwei Bilder',
+                      'meta'   => 'Metadatenblock',
+                      'text'   => 'Nur Text',
+                      'row'    => 'Text/Bild',
                   ] )
                   ->default( 'default' ),
 
@@ -110,10 +110,11 @@ class ContentBlock extends Resource {
                   ->imageSettings( [
                       'disk' => 's3',
                       'path' => 'images/articles',
-                  ] ),
+                  ] )
+                  ->rules( [ 'required' ] ),
 
 
-            KeyValue::make('Meta')->nullable(),
+            KeyValue::make( 'Meta' )->nullable(),
 
             MorphMany::make( 'Images', 'images', 'App\Nova\Image' ),
 

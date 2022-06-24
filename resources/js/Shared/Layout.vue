@@ -106,7 +106,7 @@
     </div>
 
 
-    <div id="content" class="my-48">
+    <div id="content">
         <slot/>
     </div>
 
