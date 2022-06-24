@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body{
+    scroll-behavior: smooth !important;
+}
+
+#content{
+    p{
+        @apply leading-loose;
+    }
+}
+
+
+
 
 @keyframes showTopText {
     0% { transform: translate3d(0, 100%, 0); }

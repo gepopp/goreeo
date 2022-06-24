@@ -8,6 +8,7 @@ use App\Traits\TipTapSettings;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -17,7 +18,11 @@ class ContentBlock extends Resource {
 
 
 
-use TipTapSettings;
+
+
+    use TipTapSettings;
+
+
 
     /**
      * The model the resource corresponds to.
@@ -68,14 +73,19 @@ use TipTapSettings;
         return [
             MorphTo::make( 'Contentable', 'contentable' )
                    ->types( [
-                       References::class
-                   ]),
+                       References::class,
+                   ] ),
 
             Number::make( 'Order' )->rules( [ 'required', 'integer' ] )->default( 100 ),
 
             Select::make( 'Layout' )
                   ->options( [
                       'default' => 'default',
+                      'image'   => 'Nur Bild',
+                      'images'  => 'Zwei Bilder',
+                      'meta'    => 'Metadatenblock',
+                      'text'    => 'Nur Text',
+                      'row'     => 'Text/Bild',
                   ] )
                   ->default( 'default' ),
 
@@ -104,7 +114,9 @@ use TipTapSettings;
                   ] ),
 
 
-            MorphMany::make('Images', 'images', 'App\Nova\Image')
+            KeyValue::make('Meta')->nullable(),
+
+            MorphMany::make( 'Images', 'images', 'App\Nova\Image' ),
 
         ];
     }

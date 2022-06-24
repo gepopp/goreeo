@@ -80,9 +80,35 @@
                     <img :src="logo" class="w-full h-auto"/>
                 </Link>
             </div>
+
+            <Transition name="fade">
+                <div class="absolute bottom-1/4 md:bottom-0 left-0 w-full flex justify-between p-10 text-white" v-if="activeSlug != '/' && activeSlug != ''">
+                    <Link :href="route('home')" class="text-2xl animate-pulse flex items-center space-x-5">
+                        <div class="w-10 h-10 bg-logo rounded-full flex justify-center items-center">
+                            <svg class="text-white w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <span>zurück</span>
+                    </Link>
+                    <a href="#content" class="text-2xl animate-pulse flex items-center space-x-5">
+                        <div class="w-10 h-10 bg-logo rounded-full flex justify-center items-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </Transition>
+
+
         </div>
     </div>
-    <slot/>
+
+
+    <div id="content" class="my-48">
+        <slot/>
+    </div>
 
 </template>
 
@@ -137,7 +163,7 @@ export default {
             .then((data) => {
                 this.all_slides = this.slides = data.data;
                 this.setup = false;
-                if(Inertia.page.url != '/'){
+                if (Inertia.page.url != '/') {
                     this.intro = false;
                     this.introOut();
                     setTimeout(() => {

@@ -3,7 +3,8 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
     content: [
         'resources/js/Pages/**/*.vue',
-        'resources/js/Shared/**/*.vue'
+        'resources/js/Shared/**/*.vue',
+        'resources/views    /**/*.php'
     ],
     theme: {
         extend: {

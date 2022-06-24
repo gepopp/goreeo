@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="scroll-smooth">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
         @routes
         @inertiaHead
     </head>
-    <body class="antialiased">
+    <body class="antialiased scroll-smooth">
     @inertia
     </body>
 </html>
