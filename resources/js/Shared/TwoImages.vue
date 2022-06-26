@@ -16,9 +16,14 @@
 </template>
 
 <script>
+import ScrollXParallax from 'vue3-parallax/src/components/ScrollParallax.vue';
+
 export default {
     name: "TwoImages",
-    props: ['data']
+    props: ['data'],
+    components: {
+        ScrollXParallax
+    }
 }
 </script>
 

@@ -44,6 +44,28 @@ class ContentBlock extends Model {
 
 
 
+    public function getTitleAttribute( $value ) {
+
+        if ( is_null( $value ) ) {
+            return '';
+        }
+
+        return $value;
+    }
+
+    public function getSubtitleAttribute( $value ) {
+
+        if ( is_null( $value ) ) {
+            return '';
+        }
+
+        return $value;
+    }
+
+
+
+
+
     public function images() {
 
         return $this->morphMany( Image::class, 'attached' );

@@ -96,7 +96,8 @@ class ContentBlock extends Resource {
                   ->default( 'logo' ),
 
             Text::make( 'Title' )
-                ->rules( [ 'required', 'string' ] ),
+                ->nullable()
+                ->rules( [ 'nullable', 'string' ] ),
 
             Text::make( 'Subtitle' )
                 ->nullable()
