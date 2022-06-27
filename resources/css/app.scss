@@ -77,10 +77,14 @@ html, body{
 .carousel__prev{
     margin-left: 50px;
     background-color: #1d526d !important;
+    width: 3rem !important;
+    height: 3rem !important;
 }
 .carousel__next{
     margin-right: 50px;
     background-color: #1d526d !important;
+    width: 3rem !important;
+    height: 3rem !important;
 }
 .carousel__slide--active > .carousel__item {
     transform: scale(1.1);

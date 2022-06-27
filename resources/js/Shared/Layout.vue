@@ -75,16 +75,48 @@
                     </carousel>
                 </div>
             </div>
-            <div class="absolute top-0 left-0 w-1/2 max-w-xs">
+
+            <Transition name="slide">
+                <div class="absolute top-0 left-0 w-full h-full bg-gray-800 flex flex-col justify-center items-center" v-show="showMenu">
+                    <div class="content">
+                        <div class="flex flex-col md:flex-row md:justify-center md:space-x-20 text-white text-3xl md:text-5xl ">
+                            <Link :href="route('home')" class="hover:underline underline-offset-8">Referenzen</Link>
+                            <Link :href="route('home')" class="hover:underline underline-offset-8">Team</Link>
+                            <Link :href="route('home')" class="hover:underline underline-offset-8">Kontakt</Link>
+                        </div>
+                        <div class="flex justify-end mt-5 mb-3 w-full">
+                            <div class="w-24 border-t-4 border-white"></div>
+                        </div>
+                        <div class="text-white flex justify-end space-x-3">
+                            <Link :href="route('home')" class="hover:underline text-xs">Impressum</Link>
+                            <Link :href="route('home')" class="hover:underline text-xs">Datenschutz</Link>
+                        </div>
+                    </div>
+
+
+                </div>
+            </Transition>
+
+
+            <div class="absolute top-0 left-0 w-full flex justify-between p-10">
                 <Link :href="route('home')">
-                    <img :src="logo" class="w-full h-auto"/>
+                    <img :src="logo" class="h-12 w-auto"/>
                 </Link>
+                <div class="w-12 h-12 rounded-full bg-logo p-1">
+                    <div class="w-full h-full rounded-full border-2 border-white flex justify-center items-center cursor-pointer" @click="showMenu = !showMenu">
+                        <svg class="w-6 h-6 text-white transition-all" :class="{ 'rotate-90' : showMenu }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </div>
+                </div>
             </div>
 
+
+
             <Transition name="fade">
-                <div class="absolute bottom-1/4 md:bottom-0 left-0 w-full flex justify-between p-10 text-white" v-if="activeSlug != '/' && activeSlug != ''">
+                <div class="hidden md:flex absolute bottom-1/4 md:bottom-0 left-0 w-full justify-between p-10 text-white" v-if="activeSlug != '/' && activeSlug != ''">
                     <Link :href="route('home')" class="text-2xl animate-pulse flex items-center space-x-5">
-                        <div class="w-10 h-10 bg-logo rounded-full flex justify-center items-center">
+                        <div class="w-12 h-12 bg-logo rounded-full flex justify-center items-center">
                             <svg class="text-white w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
                             </svg>
@@ -92,7 +124,7 @@
                         <span>zurück</span>
                     </Link>
                     <a href="#content" class="text-2xl animate-pulse flex items-center space-x-5">
-                        <div class="w-10 h-10 bg-logo rounded-full flex justify-center items-center">
+                        <div class="w-12 h-12 bg-logo rounded-full flex justify-center items-center">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
@@ -138,7 +170,8 @@ export default {
             slides: [],
             fade: false,
             activeSlug: '',
-            toShow: 3
+            toShow: 3,
+            showMenu :false,
         }
     },
     watch: {
@@ -219,6 +252,15 @@ export default {
     width: 100%;
     transition: width 1s ease;
 }
+
+.slide-enter-active >  .content,
+.slide-leave-active >  .content,
+.slide-enter-from  > .content,
+.slide-leave-to  > .content
+{
+    display: none;
+}
+
 
 .slide-enter-from,
 .slide-leave-to {
